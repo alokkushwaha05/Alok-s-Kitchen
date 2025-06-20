@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alok's Kitchen</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+  <!-- Hero Section -->
+  <section class="bg-yellow-50 py-20 text-center" data-aos="fade-down">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to Alok's Kitchen</h1>
+    <p class="text-xl mb-6">Delicious Food Delivered At Your Doorstep</p>
+    <a href="#menu" class="bg-green-500 text-white px-6 py-3 rounded-full text-lg hover:bg-green-600 transition">View Menu</a>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="py-16 px-4 md:px-20" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-10 text-center">Our Special Menu</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <!-- Food Cards (repeating block) -->
+      <!-- Add as many food items as needed -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-6 mt-16 text-center text-sm">
+    <p>&copy; 2025 Alok's Kitchen. All rights reserved.</p>
+    <p>Contact us at <a href="mailto:alokkushwaha289@gmail.com" class="text-blue-500 hover:underline"><u>Here</u></a></p>
+
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    function createFoodCard(name, image) {
+      const card = document.createElement('div');
+      card.className = "shadow-lg rounded-xl overflow-hidden";
+      card.setAttribute("data-aos", "zoom-in");
+
+      const img = document.createElement('img');
+      img.src = image;
+      img.alt = name;
+      img.className = "w-full h-48 object-cover";
+
+      const content = document.createElement('div');
+      content.className = "p-4";
+
+      const title = document.createElement('h3');
+      title.className = "text-xl font-semibold mb-2";
+      title.innerText = name;
+
+      const btn = document.createElement('button');
+      btn.className = "bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition hidden";
+      btn.innerText = "Order";
+      btn.onclick = () => {
+        const url = `https://wa.me/919555926402?text=Hello%2C%20I%20want%20to%20order%20${encodeURIComponent(name)}.%20\nMy%20Name%3A%20[Your%20Name]%20\nAddress%3A%20[Your%20Address]%20\nPhone%3A%20[Your%20Phone]`;
+        window.open(url, '_blank');
+      };
+
+      card.onclick = () => {
+        btn.classList.toggle('hidden');
+      };
+
+      content.appendChild(title);
+      content.appendChild(btn);
+      card.appendChild(img);
+      card.appendChild(content);
+
+      return card;
+    }
+
+// ...existing code...
+    const foodItems = [
+      { name: "Samosa", image: "https://images.pexels.com/photos/9027521/pexels-photo-9027521.jpeg?_gl=1*1xbv01i*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEyODk4JGo1MiRsMCRoMA.." },
+      { name: "Jalebi Fafda", image: "https://images.pexels.com/photos/7566499/pexels-photo-7566499.jpeg?_gl=1*1k3dcop*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEyOTQ0JGo2JGwwJGgw" },
+      { name: "Vada Pav", image: "https://images.pexels.com/photos/17433337/pexels-photo-17433337.jpeg?_gl=1*1fxgx6f*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEyODI5JGo1OSRsMCRoMA.." },
+      { name: "Chhole Bhature", image: "https://media.istockphoto.com/id/1292633282/photo/chole-bhature-spicy-chick-peas-curry-also-known-as-chole-or-channa-masala-is-traditional.jpg?b=1&s=612x612&w=0&k=20&c=sHeK8mSOACWMHGdJqIzuwJxsBrnl0awF0g3Becib4t8=" },
+      { name: "Veg Biryani", image: "https://images.pexels.com/photos/32518326/pexels-photo-32518326.jpeg?_gl=1*5rx8vj*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMDA2JGoyOSRsMCRoMA.." },
+      { name: "Chicken Biryani", image: "https://images.pexels.com/photos/17696653/pexels-photo-17696653.jpeg?_gl=1*mqvn23*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMDUxJGo0NCRsMCRoMA.." },
+      { name: "Masala Dosa", image: "https://images.pexels.com/photos/20422129/pexels-photo-20422129.jpeg?_gl=1*1djmqet*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMDg2JGo5JGwwJGgw" },
+      { name: "Burger", image: "https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?_gl=1*1rf18ts*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMTI4JGo0MyRsMCRoMA.." },
+      { name: "Chowmein", image: "https://images.pexels.com/photos/3926121/pexels-photo-3926121.jpeg?_gl=1*16gf447*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMjA2JGoyOCRsMCRoMA.." },
+      { name: "Pani Puri", image: "https://images.pexels.com/photos/17184404/pexels-photo-17184404.jpeg?_gl=1*2rrlp9*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMjYwJGozNSRsMCRoMA.." },
+      { name: "Pav Bhaji", image: "https://images.pexels.com/photos/17223838/pexels-photo-17223838.jpeg?_gl=1*1g9a8og*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMzA3JGo1OSRsMCRoMA.." },
+      { name: "Rasgulla", image: "https://images.pexels.com/photos/8788869/pexels-photo-8788869.jpeg?_gl=1*nqgygp*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMzc4JGo1OSRsMCRoMA.." },
+      { name: "Gulab Jamun", image: "https://images.pexels.com/photos/11887844/pexels-photo-11887844.jpeg?_gl=1*1l34waj*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDE0MTgwJGoxNiRsMCRoMA.." }
+    ];
+//
+
+    const container = document.querySelector("#menu .grid");
+    foodItems.forEach(item => {
+      container.appendChild(createFoodCard(item.name, item.image));
+    });
+  </script>
+</body>
+</html>
