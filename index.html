@@ -40,7 +40,7 @@
   <script>
     AOS.init();
 
-    function createFoodCard(name, image) {
+   function createFoodCard(name, image, price) {
       const card = document.createElement('div');
       card.className = "shadow-lg rounded-xl overflow-hidden";
       card.setAttribute("data-aos", "zoom-in");
@@ -57,6 +57,10 @@
       title.className = "text-xl font-semibold mb-2";
       title.innerText = name;
 
+      const priceTag = document.createElement('p');
+      priceTag.className = "text-lg font-bold text-green-600 mb-3";
+      priceTag.innerText = `₹${price}`;
+
       const btn = document.createElement('button');
       btn.className = "bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition hidden";
       btn.innerText = "Order";
@@ -70,6 +74,7 @@
       };
 
       content.appendChild(title);
+      content.appendChild(priceTag);
       content.appendChild(btn);
       card.appendChild(img);
       card.appendChild(content);
@@ -79,26 +84,26 @@
 
 // ...existing code...
     const foodItems = [
-      { name: "Samosa", image: "https://images.pexels.com/photos/9027521/pexels-photo-9027521.jpeg?_gl=1*1xbv01i*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEyODk4JGo1MiRsMCRoMA.." },
-      { name: "Jalebi Fafda", image: "https://images.pexels.com/photos/7566499/pexels-photo-7566499.jpeg?_gl=1*1k3dcop*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEyOTQ0JGo2JGwwJGgw" },
-      { name: "Vada Pav", image: "https://images.pexels.com/photos/17433337/pexels-photo-17433337.jpeg?_gl=1*1fxgx6f*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEyODI5JGo1OSRsMCRoMA.." },
-      { name: "Chhole Bhature", image: "https://media.istockphoto.com/id/1292633282/photo/chole-bhature-spicy-chick-peas-curry-also-known-as-chole-or-channa-masala-is-traditional.jpg?b=1&s=612x612&w=0&k=20&c=sHeK8mSOACWMHGdJqIzuwJxsBrnl0awF0g3Becib4t8=" },
-      { name: "Veg Biryani", image: "https://images.pexels.com/photos/32518326/pexels-photo-32518326.jpeg?_gl=1*5rx8vj*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMDA2JGoyOSRsMCRoMA.." },
-      { name: "Chicken Biryani", image: "https://images.pexels.com/photos/17696653/pexels-photo-17696653.jpeg?_gl=1*mqvn23*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMDUxJGo0NCRsMCRoMA.." },
-      { name: "Masala Dosa", image: "https://images.pexels.com/photos/20422129/pexels-photo-20422129.jpeg?_gl=1*1djmqet*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMDg2JGo5JGwwJGgw" },
-      { name: "Burger", image: "https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?_gl=1*1rf18ts*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMTI4JGo0MyRsMCRoMA.." },
-      { name: "Chowmein", image: "https://images.pexels.com/photos/3926121/pexels-photo-3926121.jpeg?_gl=1*16gf447*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMjA2JGoyOCRsMCRoMA.." },
-      { name: "Pani Puri", image: "https://images.pexels.com/photos/17184404/pexels-photo-17184404.jpeg?_gl=1*2rrlp9*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMjYwJGozNSRsMCRoMA.." },
-      { name: "Pav Bhaji", image: "https://images.pexels.com/photos/17223838/pexels-photo-17223838.jpeg?_gl=1*1g9a8og*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMzA3JGo1OSRsMCRoMA.." },
-      { name: "Rasgulla", image: "https://images.pexels.com/photos/8788869/pexels-photo-8788869.jpeg?_gl=1*nqgygp*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMzc4JGo1OSRsMCRoMA.." },
-      { name: "Gulab Jamun", image: "https://images.pexels.com/photos/11887844/pexels-photo-11887844.jpeg?_gl=1*1l34waj*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDE0MTgwJGoxNiRsMCRoMA.." }
+      { name: "Samosa", image: "https://images.pexels.com/photos/9027521/pexels-photo-9027521.jpeg?_gl=1*1xbv01i*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEyODk4JGo1MiRsMCRoMA..", price: 40 },
+      { name: "Jalebi Fafda", image: "https://images.pexels.com/photos/7566499/pexels-photo-7566499.jpeg?_gl=1*1k3dcop*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEyOTQ0JGo2JGwwJGgw", price: 50 },
+      { name: "Vada Pav", image: "https://images.pexels.com/photos/17433337/pexels-photo-17433337.jpeg?_gl=1*1fxgx6f*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEyODI5JGo1OSRsMCRoMA..", price: 20 },
+      { name: "Chhole Bhature", image: "https://media.istockphoto.com/id/1292633282/photo/chole-bhature-spicy-chick-peas-curry-also-known-as-chole-or-channa-masala-is-traditional.jpg?b=1&s=612x612&w=0&k=20&c=sHeK8mSOACWMHGdJqIzuwJxsBrnl0awF0g3Becib4t8=", price: 50 },
+      { name: "Veg Biryani", image: "https://images.pexels.com/photos/32518326/pexels-photo-32518326.jpeg?_gl=1*5rx8vj*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMDA2JGoyOSRsMCRoMA..", price: 40 },
+      { name: "Chicken Biryani", image: "https://images.pexels.com/photos/17696653/pexels-photo-17696653.jpeg?_gl=1*mqvn23*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMDUxJGo0NCRsMCRoMA..", price: 80 },
+      { name: "Masala Dosa", image: "https://images.pexels.com/photos/20422129/pexels-photo-20422129.jpeg?_gl=1*1djmqet*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMDg2JGo5JGwwJGgw", price: 40 },
+      { name: "Burger", image: "https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?_gl=1*1rf18ts*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMTI4JGo0MyRsMCRoMA..", price: 30 },
+      { name: "Chowmein", image: "https://images.pexels.com/photos/3926121/pexels-photo-3926121.jpeg?_gl=1*16gf447*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMjA2JGoyOCRsMCRoMA..", price: 30 },
+      { name: "Pani Puri", image: "https://images.pexels.com/photos/17184404/pexels-photo-17184404.jpeg?_gl=1*2rrlp9*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMjYwJGozNSRsMCRoMA..", price: 30 },
+      { name: "Pav Bhaji", image: "https://images.pexels.com/photos/17223838/pexels-photo-17223838.jpeg?_gl=1*1g9a8og*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMzA3JGo1OSRsMCRoMA..", price: 50 },
+      { name: "Rasgulla", image: "https://images.pexels.com/photos/8788869/pexels-photo-8788869.jpeg?_gl=1*nqgygp*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDEzMzc4JGo1OSRsMCRoMA..", price: 20 },
+      { name: "Gulab Jamun", image: "https://images.pexels.com/photos/11887844/pexels-photo-11887844.jpeg?_gl=1*1l34waj*_ga*NzQ2NzQxNzc2LjE3Mzc1NDg5NjM.*_ga_8JE65Q40S6*czE3NTA0MTE5MzAkbzEyJGcxJHQxNzUwNDE0MTgwJGoxNiRsMCRoMA..", price: 30 }
     ];
 //
 
     const container = document.querySelector("#menu .grid");
     foodItems.forEach(item => {
-      container.appendChild(createFoodCard(item.name, item.image));
-    });
+  container.appendChild(createFoodCard(item.name, item.image, item.price));
+});
   </script>
 </body>
 </html>
